@@ -36,11 +36,8 @@ public class App extends Application {
         primaryStage.setTitle("3D Engine");
 
         // JavaFX stuff
-        Group root = new Group();
-        Scene scene = new Scene(root, Engine3D.RESOLUTION[0], Engine3D.RESOLUTION[1]);
-        primaryStage.setScene(scene);
-        Pane pane = new Pane();
-        pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        Scene scene = setupScene(primaryStage);
+        Pane pane = setupPane(); 
 
         meshGroup = new Group();
         
@@ -92,6 +89,19 @@ public class App extends Application {
             }
         }, 0, 1000/60
         );
+    }
+
+    private Scene setupScene(Stage primaryStage) {
+        Group root = new Group();
+        Scene scene = new Scene(root, Engine3D.RESOLUTION[0], Engine3D.RESOLUTION[1]);
+        primaryStage.setScene(scene);
+        return scene;
+    }
+
+    private Pane setupPane() {
+        Pane pane = new Pane();
+        pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        return pane;
     }
 
     // Mesh to FX polys
