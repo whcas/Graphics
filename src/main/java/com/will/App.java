@@ -23,6 +23,8 @@ import java.util.TimerTask;
  * JavaFX App
  */
 public class App extends Application {
+    final static String SHAPE_PATH = "./src/main/Renders/teapot.obj";
+
     final static Timer clockTimer = new Timer(true);
 
     static Group meshGroup = new Group();
@@ -35,27 +37,14 @@ public class App extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("3D Engine");
 
-        // JavaFX stuff
+        // JavaFX setup
         Scene scene = setupScene(primaryStage);
         Pane pane = setupPane(); 
 
         meshGroup = new Group();
         
         // Get triangles to draw
-        //Mesh shape = Mesh.Cube();
-        Mesh shape = null;
-        String filePath = new File("").getAbsolutePath();
-        System.out.println(filePath.concat("path to the property file"));
-        try {
-            shape = Mesh.loadFromFile(new File("./src/main/Renders/teapot.obj"), Color.PINK);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            if (shape == null) {
-                shape = Shape.Cube();
-            }
-        }
+        Mesh shape = getDefaultShape(SHAPE_PATH);
         Mesh projectedShape = shape.toProjected(0.0f);
         ArrayList<Polygon> triangles = toScreen( projectedShape );
 
@@ -89,6 +78,20 @@ public class App extends Application {
             }
         }, 0, 1000/60
         );
+    }
+
+    private Mesh getDefaultShape(String shapePath) {
+        Mesh shape = null;
+        try {
+            shape = Mesh.loadFromFile(new File(SHAPE_PATH), Color.PINK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (shape == null) {
+                shape = Shape.Cube();
+            }
+        }
+        return shape;
     }
 
     private Scene setupScene(Stage primaryStage) {

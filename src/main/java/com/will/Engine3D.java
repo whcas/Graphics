@@ -16,10 +16,10 @@ public class Engine3D {
 
 
     final static Matrix PROJECTION_MATRIX = new Matrix(new double [][] {
-        {ASPECT_RATIO * FOV_SCALE, 0, 0, 0},
-        {0, FOV_SCALE, 0, 0},
-        {0, 0, Z_NORMALISATION, ( -Z_NEAR * Z_NORMALISATION )},
-        {0, 0, 1, 0}
+        {ASPECT_RATIO * FOV_SCALE,  0,          0,                  0                               },
+        {0,                         FOV_SCALE,  0,                  0                               },
+        {0,                         0,          Z_NORMALISATION,    ( -Z_NEAR * Z_NORMALISATION )   },
+        {0,                         0,          1,                  0                               }
     });
 
     public static Matrix rotationMatrix(float angle) {
