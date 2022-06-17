@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 public class Mesh {
     Vec3d position = new Vec3d(0.0f, 0.0f, 5.0f, 0.0f);
 
-    Matrix lookAt = pointAt(Engine3D.V_CAMERA, Engine3D.V_CAMERA.plus(new Vec3d(0, 0, 1, 0)), new Vec3d(0, 1, 0, 0));
+    Matrix lookAt = pointAt(Engine3D.V_CAMERA, Engine3D.V_CAMERA.plus(new Vec3d(0f, 0f, 1f, 0f)), new Vec3d(0f, 1f, 0f, 0f));
 
     ArrayList<Triangle> triangles;
 
@@ -125,10 +125,10 @@ public class Mesh {
             if (parts[0].equals("v")) {
                 vectors.add(
                     new Vec3d(
-                        Double.valueOf(parts[1]),
-                        Double.valueOf(parts[2]),
-                        Double.valueOf(parts[3]),
-                        0
+                        Float.valueOf(parts[1]),
+                        Float.valueOf(parts[2]),
+                        Float.valueOf(parts[3]),
+                        0f
                     )
                 );
             }

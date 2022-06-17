@@ -10,7 +10,7 @@ public class Matrix {
         this.w = w;
     }
 
-    public Matrix(double[][] m) {
+    public Matrix(Float[][] m) {
         this.x = new Vec3d(m[0][0], m[0][1], m[0][2], m[0][3]);
         this.y = new Vec3d(m[1][0], m[1][1], m[1][2], m[1][3]);
         this.z = new Vec3d(m[2][0], m[2][1], m[2][2], m[2][3]);
@@ -24,7 +24,7 @@ public class Matrix {
         this.w = new Vec3d();
     }
 
-    public void changeMatrix(int collum, int row, double in) {
+    public void changeMatrix(int collum, int row, Float in) {
         switch(collum) {
             case 0:
                 x.changeVector(row, in);

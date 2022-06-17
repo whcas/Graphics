@@ -24,9 +24,9 @@ public class Triangle implements Comparable<Triangle> {
 
     public Double[] toDoubles() {
         return new Double[] {
-            a.x, a.y,
-            b.x, b.y,
-            c.x, c.y,
+            (double)a.x, (double)a.y,
+            (double)b.x, (double)b.y,
+            (double)c.x, (double)c.y,
         };
     }
 
@@ -65,7 +65,7 @@ public class Triangle implements Comparable<Triangle> {
         Vec3d lightDir = Engine3D.LIGHT_DIRECTION;
         lightDir = lightDir.normalize();
 
-        double lightDotProd = lightDir.dotProduct(this.getNormal());
+        Float lightDotProd = lightDir.dotProduct(this.getNormal());
         lightDotProd = 1 - lightDotProd;
         lightDotProd = lightDotProd / 2;
         return new Triangle(
@@ -90,7 +90,7 @@ public class Triangle implements Comparable<Triangle> {
 
         return normal.normalize();
     }
-    public double normalDotProduct(Vec3d vec) {
+    public Float normalDotProduct(Vec3d vec) {
         Vec3d cameraAdjusted = this.a.sub(Engine3D.V_CAMERA);
         Vec3d normal = this.getNormal();
 
@@ -104,8 +104,8 @@ public class Triangle implements Comparable<Triangle> {
 
     @Override
     public int compareTo(Triangle o) {
-        double thisAverageZ = ( this.a.z + this.b.z + this.c.z ) / 3;
-        double otherAverageZ = ( o.a.z + o.b.z + o.c.z ) / 3;
+        Float thisAverageZ = ( this.a.z + this.b.z + this.c.z ) / 3;
+        Float otherAverageZ = ( o.a.z + o.b.z + o.c.z ) / 3;
         if (thisAverageZ < otherAverageZ) { return -1; }
         if (thisAverageZ > otherAverageZ) { return 1; }
         return 0;

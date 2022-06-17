@@ -60,6 +60,9 @@ public class App extends Application {
         clockTimer.scheduleAtFixedRate(new TimerTask(){
 
             float theta = 0.0f;
+            Vec3d camera = Engine3D.V_CAMERA;
+            Vec3d lookDir = new Vec3d(0f, 0f, 1f, 0f);
+            Vec3d up = new Vec3d(0f, 1f, 0f, 0f);
             @Override
             public void run() {
                 Platform.runLater(new Runnable(){

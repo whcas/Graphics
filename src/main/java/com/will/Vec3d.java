@@ -3,9 +3,9 @@ package com.will;
 import java.text.DecimalFormat;
 
 public class Vec3d {
-    double x, y, z, w;
+    float x, y, z, w;
 
-    public Vec3d(double x, double y, double z, double w) {
+    public Vec3d(Float x, Float y, Float z, Float w) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -23,7 +23,7 @@ public class Vec3d {
         return (this.x == o.x && this.y == o.y && this.z == o.z && this.w == o.w);
     }
 
-    public void changeVector(int row, double in) {
+    public void changeVector(int row, Float in) {
         switch(row) {
             case 0:
                 this.x = in;
@@ -70,7 +70,7 @@ public class Vec3d {
             this.w * matrix.w.x + this.w * matrix.w.y + this.w * matrix.w.z + this.w * matrix.w.w
         );
     }
-    public Vec3d scale(double scaler) {
+    public Vec3d scale(Float scaler) {
         return new Vec3d(
             this.x * scaler,
             this.y * scaler,
@@ -78,7 +78,7 @@ public class Vec3d {
             this.w * scaler
         );
     }
-    public double dotProduct(Vec3d other) {
+    public Float dotProduct(Vec3d other) {
         return (
             this.x * other.x +
             this.y * other.y +
@@ -95,8 +95,8 @@ public class Vec3d {
         );
     }
 
-    public double length() {
-        return Math.sqrt(dotProduct(this));
+    public Float length() {
+        return (float)Math.sqrt(dotProduct(this));
     }
 
     public Vec3d normalize() {
@@ -119,7 +119,7 @@ public class Vec3d {
         Matrix scaleMatrix = new Matrix() {{
             changeMatrix(0, 0, 0.5f * Engine3D.RESOLUTION[0]);
             changeMatrix(1, 1, 0.5f * Engine3D.RESOLUTION[1]);
-            changeMatrix(2, 2, 1);
+            changeMatrix(2, 2, 1f);
         }};
         return scaleMatrix.vectorMatrixMultipli(newVec);
     }
