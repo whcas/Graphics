@@ -93,8 +93,8 @@ public class Mesh {
         Mesh translatedMesh = rotatedMesh.translate(position);
         Mesh projectedMesh = translatedMesh.project();
         Mesh viewMesh = projectedMesh.view();
-        projectedMesh.sort();
-        return projectedMesh;
+        viewMesh.sort();
+        return viewMesh;
     }
 
     public Matrix pointAt(Vec3d pos, Vec3d target, Vec3d up) {
