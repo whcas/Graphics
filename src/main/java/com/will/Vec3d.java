@@ -54,22 +54,52 @@ public class Vec3d {
             this.w + other.w
         );
     }
+
+    public Vec3d plus(Number other) {
+        return new Vec3d(
+                this.x + other.floatValue(),
+                this.y + other.floatValue(),
+                this.z + other.floatValue(),
+                this.w + other.floatValue()
+        );
+    }
+
     public Vec3d sub(Vec3d other) {
         return new Vec3d(
             this.x - other.x,
             this.y - other.y,
             this.z - other.z,
-            this.w + other.w
+            this.w - other.w
         );
     }
-    public Vec3d matrixMultiply(Matrix matrix) {
+
+    public Vec3d sub(Number other) {
         return new Vec3d(
-            this.x * matrix.x.x + this.x * matrix.x.y + this.x * matrix.x.z + this.x * matrix.x.w,
-            this.y * matrix.y.x + this.y * matrix.y.y + this.y * matrix.y.z + this.y * matrix.y.w,
-            this.z * matrix.z.x + this.z * matrix.z.y + this.z * matrix.z.z + this.z * matrix.z.w,
-            this.w * matrix.w.x + this.w * matrix.w.y + this.w * matrix.w.z + this.w * matrix.w.w
+                this.x - other.floatValue(),
+                this.y - other.floatValue(),
+                this.z - other.floatValue(),
+                this.w - other.floatValue()
         );
     }
+
+    public Vec3d multiply(Vec3d other) {
+        return new Vec3d(
+                this.x * other.x,
+                this.y * other.y,
+                this.z * other.z,
+                this.w * other.w
+        );
+    }
+
+    public float sum() {
+        return (
+                this.x +
+                this.y +
+                this.z +
+                this.w
+        );
+    }
+
     public Vec3d scale(Float scaler) {
         return new Vec3d(
             this.x * scaler,
@@ -78,20 +108,26 @@ public class Vec3d {
             this.w * scaler
         );
     }
+
     public Float dotProduct(Vec3d other) {
-        return (
-            this.x * other.x +
-            this.y * other.y +
-            this.z * other.z +
-            this.w * other.w
-        );
+        return this.multiply(other).sum();
     }
+
     public Vec3d normal(Vec3d other) {
         return new Vec3d(
             (this.y * other.z) - (this.z * other.y),
             (this.z * other.x) - (this.x * other.z),
             (this.x * other.y) - (this.y * other.x),
             this.w
+        );
+    }
+
+    public Vec3d matrixMultiply(Matrix matrix) {
+        return new Vec3d(
+                this.x * matrix.x.x + this.x * matrix.x.y + this.x * matrix.x.z + this.x * matrix.x.w,
+                this.y * matrix.y.x + this.y * matrix.y.y + this.y * matrix.y.z + this.y * matrix.y.w,
+                this.z * matrix.z.x + this.z * matrix.z.y + this.z * matrix.z.z + this.z * matrix.z.w,
+                this.w * matrix.w.x + this.w * matrix.w.y + this.w * matrix.w.z + this.w * matrix.w.w
         );
     }
 
