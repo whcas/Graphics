@@ -10,7 +10,7 @@ public class Matrix {
         this.w = w;
     }
 
-    public Matrix(Float[][] m) {
+    public Matrix(float[][] m) {
         this.x = new Vec3d(m[0][0], m[0][1], m[0][2], m[0][3]);
         this.y = new Vec3d(m[1][0], m[1][1], m[1][2], m[1][3]);
         this.z = new Vec3d(m[2][0], m[2][1], m[2][2], m[2][3]);
@@ -60,5 +60,34 @@ public class Matrix {
             zVec.plus(
             wVec
         )));*/
+    }
+
+    public Vec3d get(int i) {
+        switch (i) {
+            case 0: return x;
+            case 1: return y;
+            case 2: return z;
+            case 3: return w;
+            default: throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public float get(int x, int y) {
+        switch (x) {
+            case 0: return this.x.get(y);
+            case 1: return this.y.get(y);
+            case 2: return this.z.get(y);
+            case 3: return this.w.get(y);
+            default: throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public float[][] toArray() {
+        return new float[][]  {
+                x.toArray(),
+                y.toArray(),
+                z.toArray(),
+                w.toArray()
+        };
     }
 }

@@ -15,7 +15,7 @@ public class Engine3D {
     final static Vec3d LIGHT_DIRECTION = new Vec3d(0.0f, 0.0f, 1.0f, 0f);
 
 
-    final static Matrix PROJECTION_MATRIX = new Matrix(new Float [][] {
+    final static Matrix PROJECTION_MATRIX = new Matrix(new float [][] {
         {ASPECT_RATIO * FOV_SCALE,  0f,          0f,                  0f                               },
         {0f,                         FOV_SCALE,  0f,                  0f                               },
         {0f,                         0f,          Z_NORMALISATION,    ( -Z_NEAR * Z_NORMALISATION )   },
@@ -29,20 +29,18 @@ public class Engine3D {
         Float sinHalfTheta = -(float)Math.sin(angle / 2);
         Float cosHalfTheta = -(float)Math.cos(angle / 2);
 
-        Matrix rotationMatrixZX = new Matrix(new Float [][] {
+        return new Matrix(new float [][] {
             {cosTheta,      sinTheta * cosHalfTheta,    sinTheta * sinHalfTheta,    0f},
             {-sinTheta,     cosTheta * cosHalfTheta,    cosTheta * sinHalfTheta,    0f},
             {0f,             -sinHalfTheta,              cosHalfTheta,               0f},
             {0f,             0f,                          0f,                          1f}
         });
-
-        return rotationMatrixZX;
     }
 
     public static Matrix lookAtMatrix(Vec3d forward, Vec3d right, Vec3d offset) {
         Vec3d up = forward.normal(right);
 
-        return new Matrix(new Float[][] {
+        return new Matrix(new float[][] {
             {forward.x,                     right.x,                    up.x,                       0f},
             {forward.y,                     right.y,                    up.y,                       0f},
             {forward.z,                     right.z,                    up.z,                       0f},

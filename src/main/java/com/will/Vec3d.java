@@ -159,4 +159,18 @@ public class Vec3d {
         }};
         return scaleMatrix.vectorMatrixMultipli(newVec);
     }
+
+    public float get(int i) {
+        switch (i) {
+            case 0: return x;
+            case 1: return y;
+            case 2: return z;
+            case 3: return w;
+            default: throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public float[] toArray() {
+        return new float[] {x, y, z, w};
+    }
 }

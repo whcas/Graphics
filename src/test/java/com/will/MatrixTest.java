@@ -12,16 +12,18 @@ public class MatrixTest {
     public void zeroMatrixTest() {
         Matrix m = new Matrix();
 
-        for (double v : m.toDense()) {
-            assertEquals(0.0, v, 0.0);
+        for (float[] a : m.toArray()) {
+            for (float f : a) {
+                assertEquals(0.0, f, 0.0);
+            }
         }
     }
 
     @Test
     public void listMatrixTest() {
-        double[][] a = new double[4][4];
+        float[][] a = new float[4][4];
         for (int i = 0; i < 16; i++) {
-            a[Math.floorDiv(i, 4)][i % 4] = r.nextDouble();
+            a[Math.floorDiv(i, 4)][i % 4] = r.nextFloat();
         }
         Matrix m = new Matrix(a);
 
@@ -29,7 +31,7 @@ public class MatrixTest {
             int x = Math.floorDiv(i, 4);
             int y = i % 4;
 
-            assertEquals(a[x][y], m.toDense().get(x, y), 0.0);
+            assertEquals(a[x][y], m.get(x, y), 0.0);
         }
     }
 
@@ -37,7 +39,7 @@ public class MatrixTest {
     public void vec3dMatrixTest() {
         Vec3d[] a = new Vec3d[4];
         for (int i = 0; i < 4; i++) {
-            a[i] = new Vec3d(r.nextDouble(), r.nextDouble(), r.nextDouble(), r.nextDouble());
+            a[i] = new Vec3d(r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat());
         }
 
         Matrix m = new Matrix(a[0], a[1], a[2], a[3]);
@@ -49,19 +51,19 @@ public class MatrixTest {
 
     @Test
     public void changeMatrixTest() {
-        double[][] a = new double[4][4];
+        float[][] a = new float[4][4];
         for (int i = 0; i < 16; i++) {
-            a[Math.floorDiv(i, 4)][i % 4] = r.nextDouble();
+            a[Math.floorDiv(i, 4)][i % 4] = r.nextFloat();
         }
         Matrix m = new Matrix(a);
 
         int x = (int) (r.nextDouble() * 3.0);
         int y = (int) (r.nextDouble() * 3.0);
-        double v = r.nextDouble();
+        float v = r.nextFloat();
 
         a[x][y] = v;
         m.changeMatrix(x, y, v);
 
-        assertEquals(a[x][y], m.toDense().get(x, y), 0.0);
+        assertEquals(a[x][y], m.get(x, y), 0.0);
     }
 }
