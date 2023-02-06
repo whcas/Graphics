@@ -117,6 +117,7 @@ public class App extends Application {
             Polygon polyTri = new Polygon();
             polyTri.getPoints().addAll(tri.toDoubles());
             polyTri.setFill(tri.color);
+            polyTri.setStroke(tri.color);
             polyTris.add(polyTri);
         }
         return polyTris;

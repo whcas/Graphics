@@ -61,6 +61,7 @@ public class Triangle implements Comparable<Triangle> {
             c.plus(translation),
             this.color);
     }
+
     public Triangle project() {
         Vec3d lightDir = Engine3D.LIGHT_DIRECTION;
         lightDir = lightDir.normalize();
@@ -91,7 +92,7 @@ public class Triangle implements Comparable<Triangle> {
         return normal.normalize();
     }
     public Float normalDotProduct(Vec3d vec) {
-        Vec3d cameraAdjusted = this.a.sub(Engine3D.V_CAMERA);
+        Vec3d cameraAdjusted = this.a.sub(vec);
         Vec3d normal = this.getNormal();
 
         return normal.dotProduct(cameraAdjusted);
