@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javafx.scene.paint.Color;
 
@@ -59,9 +63,7 @@ public class Mesh {
         ArrayList<Triangle> projectedTriangles = new ArrayList<Triangle>();
 
         for (Triangle triangle : this.triangles) {
-            if (triangle.normalDotProduct(Engine3D.V_CAMERA) < 0) {
-                projectedTriangles.add(triangle.project());
-            }
+            projectedTriangles.add(triangle.project());
         }
 
         return new Mesh(projectedTriangles);

@@ -82,6 +82,10 @@ public class Vec3d {
         );
     }
 
+    public float sum() {
+        return (this.x + this.y + this.z + this.w);
+    }
+
     public Vec3d multiply(Vec3d other) {
         return new Vec3d(
                 this.x * other.x,
@@ -91,12 +95,12 @@ public class Vec3d {
         );
     }
 
-    public float sum() {
-        return (
-                this.x +
-                this.y +
-                this.z +
-                this.w
+    public Vec3d matrixMultiply(Matrix matrix) {
+        return new Vec3d(
+                matrix.x.scale(this.x).sum(),
+                matrix.y.scale(this.y).sum(),
+                matrix.z.scale(this.z).sum(),
+                matrix.w.scale(this.w).sum()
         );
     }
 
@@ -122,15 +126,6 @@ public class Vec3d {
         );
     }
 
-    public Vec3d matrixMultiply(Matrix matrix) {
-        return new Vec3d(
-                this.x * matrix.x.x + this.x * matrix.x.y + this.x * matrix.x.z + this.x * matrix.x.w,
-                this.y * matrix.y.x + this.y * matrix.y.y + this.y * matrix.y.z + this.y * matrix.y.w,
-                this.z * matrix.z.x + this.z * matrix.z.y + this.z * matrix.z.z + this.z * matrix.z.w,
-                this.w * matrix.w.x + this.w * matrix.w.y + this.w * matrix.w.z + this.w * matrix.w.w
-        );
-    }
-
     public Float length() {
         return (float)Math.sqrt(dotProduct(this));
     }
@@ -142,6 +137,7 @@ public class Vec3d {
     public Vec3d rotate(float angle) {
         return Engine3D.rotationMatrix(angle).vectorMatrixMultipli(this);
     }
+
     public Vec3d project() {
         Vec3d newVec = this;
         newVec.w = 1;
