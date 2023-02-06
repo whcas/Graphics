@@ -54,17 +54,45 @@ public class Vec3d {
             this.w + other.w
         );
     }
+
+    public Vec3d plus(Number other) {
+        return new Vec3d(
+                this.x + other.floatValue(),
+                this.y + other.floatValue(),
+                this.z + other.floatValue(),
+                this.w + other.floatValue()
+        );
+    }
+
     public Vec3d sub(Vec3d other) {
         return new Vec3d(
             this.x - other.x,
             this.y - other.y,
             this.z - other.z,
-            this.w + other.w
+            this.w - other.w
+        );
+    }
+
+    public Vec3d sub(Number other) {
+        return new Vec3d(
+                this.x - other.floatValue(),
+                this.y - other.floatValue(),
+                this.z - other.floatValue(),
+                this.w - other.floatValue()
         );
     }
 
     public float sum() {
         return (this.x + this.y + this.z + this.w);
+    }
+
+    public Vec3d multiply(Vec3d other) {
+        return new Vec3d(
+                this.x * other.x,
+                this.y * other.y,
+                this.z * other.z,
+                this.w * other.w
+        );
     }
 
     public Vec3d matrixMultiply(Matrix matrix) {
@@ -86,12 +114,7 @@ public class Vec3d {
     }
 
     public Float dotProduct(Vec3d other) {
-        return (
-            this.x * other.x +
-            this.y * other.y +
-            this.z * other.z +
-            this.w * other.w
-        );
+        return this.multiply(other).sum();
     }
 
     public Vec3d normal(Vec3d other) {
