@@ -112,4 +112,11 @@ public class Triangle implements Comparable<Triangle> {
         return 0;
     }
 
+    public int[] xpoints() {
+        return new int[]{(int) a.x, (int) b.x, (int) c.x};
+    }
+
+    public int[] ypoints() {
+        return new int[]{(int) a.y, (int) b.y, (int) c.y};
+    }
 }

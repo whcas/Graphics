@@ -1,6 +1,6 @@
 module com.will {
-    requires transitive javafx.controls;
-    requires javafx.fxml;
+    requires javafx.graphics;
+    requires java.desktop;
 
     opens com.will to javafx.fxml;
     exports com.will;

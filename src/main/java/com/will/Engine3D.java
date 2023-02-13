@@ -1,8 +1,8 @@
 package com.will;
 
 public class Engine3D {
-    final static float[] RESOLUTION = {1024, 940};
-    final static Float ASPECT_RATIO = RESOLUTION[1]/RESOLUTION[0];
+    final static int[] RESOLUTION = {1024, 940};
+    final static Float ASPECT_RATIO = (Float.valueOf(RESOLUTION[1])/Float.valueOf(RESOLUTION[0]));
 
     final static Float FOV = 90.0f;
     final static Float FOV_SCALE = 1.0f / (float)Math.tan( FOV / 2 );
