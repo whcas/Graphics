@@ -1,12 +1,29 @@
 package com.will;
 
+import javafx.scene.paint.Color;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Render {
-    ArrayList<Mesh> objects;
+    final static String SHAPE_PATH = "./src/main/Renders/teapot.obj";
+    ArrayList<Mesh> objects = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Render r = new Render();
+
+        try {
+            r.addObject(Mesh.loadFromFile(new File(SHAPE_PATH), Color.PINK));
+            r.render(1, 1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Output render to video
@@ -14,12 +31,22 @@ public class Render {
      * @param frameRate the number of frames to render per second
      */
     public void render(int seconds, int frameRate) {
-        ArrayList<BufferedImage> frames = new ArrayList<>();
+        //ArrayList<BufferedImage> frames = new ArrayList<>();
         for (int i = 0; i < seconds * frameRate; i++) {
             for (Mesh mesh: objects) {
+                //frames.add(toImage(mesh));
+                BufferedImage image = toImage(mesh);
 
+                File outputfile = new File("render" + Math.floorDiv(i, seconds) + "s" + i % seconds + "f.jpg");
+                try {
+                    ImageIO.write(image, "jpg", outputfile);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
+
+
     }
 
     public void addObject(Mesh object) {
