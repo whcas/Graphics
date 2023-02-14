@@ -3,7 +3,8 @@ package com.will;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 
 import java.io.File;
@@ -18,7 +19,11 @@ public class Render {
         Render r = new Render();
 
         try {
-            r.addObject(Mesh.loadFromFile(new File(SHAPE_PATH), Color.PINK));
+            Mesh m1 = Mesh.loadFromFile(new File(SHAPE_PATH), Color.PINK);
+
+            m1.setPosition(new Vec3d(0f, 0.0f, 5.0f, 0.0f));
+
+            r.addObject(m1.toProjected((float) (Math.PI / 4f)));
             r.render(1, 1);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -37,9 +42,11 @@ public class Render {
                 //frames.add(toImage(mesh));
                 BufferedImage image = toImage(mesh);
 
-                File outputfile = new File("render" + Math.floorDiv(i, seconds) + "s" + i % seconds + "f.jpg");
+                File outputfile = new File("render" + Math.floorDiv(i, seconds) + "s" + i % seconds + "f.png");
                 try {
-                    ImageIO.write(image, "jpg", outputfile);
+                    System.out.println(outputfile.length());
+                    ImageIO.write(image, "png", outputfile);
+                    System.out.println(outputfile.length());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

@@ -36,6 +36,10 @@ public class Mesh {
         triangles.addAll(newMesh.getTriangles());
     }
 
+    public void setPosition(Vec3d position) {
+        this.position = position;
+    }
+
     public void sort() {
         Collections.sort(triangles);
         Collections.reverse(triangles);
